@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Love_Ya_Like_A_Sister,
+  Inter,
+} from "next/font/google";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import "./globals.css";
@@ -14,28 +19,39 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const loveYaLikeASister = Love_Ya_Like_A_Sister({
+  variable: "--font-love-ya-like-a-sister",
+  subsets: ["latin"],
+  weight: "400", // This font only has one weight
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: SITE_CONFIG.title,
   description: SITE_CONFIG.description,
   authors: [{ name: SITE_CONFIG.author }],
   keywords: [
-    'Bitcoin',
-    'Ordinals',
-    'NFT',
-    'Blockchain',
-    'Cryptocurrency',
-    'Digital Assets',
-    'Bitcoin Inscriptions'
+    "Bitcoin",
+    "Ordinals",
+    "NFT",
+    "Blockchain",
+    "Cryptocurrency",
+    "Digital Assets",
+    "Bitcoin Inscriptions",
   ],
   openGraph: {
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.siteUrl,
     siteName: SITE_CONFIG.title,
-    type: 'website',
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
   },
@@ -52,7 +68,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white`}
+        className={`${geistSans.variable} ${geistMono.variable} ${loveYaLikeASister.variable} ${inter.variable} antialiased min-h-screen bg-white`}
+        data-fonts-loaded="true"
+        data-love-ya-like-a-sister={loveYaLikeASister.variable}
+        data-inter={inter.variable}
       >
         <nav className="bg-white border-b border-gray-200 sticky top-0 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -101,19 +120,15 @@ export default function RootLayout({
             </div>
           </div>
         </nav>
-        
-        <main>
-          {children}
-        </main>
-        
+
+        <main>{children}</main>
+
         <footer className="bg-gray-900 text-white py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="col-span-1 md:col-span-2">
                 <h3 className="text-2xl font-bold mb-4">Ord-X</h3>
-                <p className="text-gray-300 mb-4">
-                  {SITE_CONFIG.description}
-                </p>
+                <p className="text-gray-300 mb-4">{SITE_CONFIG.description}</p>
                 <p className="text-sm text-gray-400">
                   © 2024 {SITE_CONFIG.author}. All rights reserved.
                 </p>
@@ -122,12 +137,18 @@ export default function RootLayout({
                 <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/" className="text-gray-300 hover:text-white transition-colors">
+                    <Link
+                      href="/"
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
                       Home
                     </Link>
                   </li>
                   <li>
-                    <Link href="/blog" className="text-gray-300 hover:text-white transition-colors">
+                    <Link
+                      href="/blog"
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
                       Blog
                     </Link>
                   </li>
@@ -137,22 +158,34 @@ export default function RootLayout({
                 <h4 className="text-lg font-semibold mb-4">Categories</h4>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/blog?category=Guides" className="text-gray-300 hover:text-white transition-colors">
+                    <Link
+                      href="/blog?category=Guides"
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
                       Guides
                     </Link>
                   </li>
                   <li>
-                    <Link href="/blog?category=News" className="text-gray-300 hover:text-white transition-colors">
+                    <Link
+                      href="/blog?category=News"
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
                       News
                     </Link>
                   </li>
                   <li>
-                    <Link href="/blog?category=Tools" className="text-gray-300 hover:text-white transition-colors">
+                    <Link
+                      href="/blog?category=Tools"
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
                       Tools
                     </Link>
                   </li>
                   <li>
-                    <Link href="/blog?category=Analysis" className="text-gray-300 hover:text-white transition-colors">
+                    <Link
+                      href="/blog?category=Analysis"
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
                       Analysis
                     </Link>
                   </li>

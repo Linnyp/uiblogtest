@@ -29,11 +29,12 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
       const level = parseInt(heading.tagName.charAt(1));
       const text = heading.textContent || "";
       // Create slug-like ID from text
-      const id = text
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '') // Remove special characters
-        .replace(/\s+/g, '-') // Replace spaces with hyphens
-        .trim() || `heading-${index}`;
+      const id =
+        text
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "") // Remove special characters
+          .replace(/\s+/g, "-") // Replace spaces with hyphens
+          .trim() || `heading-${index}`;
 
       return { id, text, level };
     });
@@ -43,55 +44,150 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
 
   useEffect(() => {
     // Add IDs to actual headings in the DOM that match our TOC items
-    const headings = document.querySelectorAll(
-      ".article-content h1, .article-content h2"
-    );
-    
-    headings.forEach((heading, index) => {
-      const text = heading.textContent || "";
-      // Generate the same ID as in tocItems
-      const id = text
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '') // Remove special characters
-        .replace(/\s+/g, '-') // Replace spaces with hyphens
-        .trim() || `heading-${index}`;
-      
-      heading.id = id;
-    });
+    const addIdsToHeadings = () => {
+      const headings = document.querySelectorAll(
+        ".article-content h1, .article-content h2"
+      );
 
-    // Intersection Observer for active section highlighting
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      {
-        rootMargin: "-20% 0% -35% 0%",
-        threshold: 0.1,
+      console.log("Found headings:", headings.length);
+
+      headings.forEach((heading, index) => {
+        const text = heading.textContent || "";
+        // Generate the same ID as in tocItems
+        const id =
+          text
+            .toLowerCase()
+            .replace(/[^\w\s-]/g, "") // Remove special characters
+            .replace(/\s+/g, "-") // Replace spaces with hyphens
+            .trim() || `heading-${index}`;
+
+        heading.id = id;
+        console.log(`Added ID "${id}" to heading: "${text}"`);
+      });
+
+      // Intersection Observer for active section highlighting
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveId(entry.target.id);
+            }
+          });
+        },
+        {
+          // Account for the fixed navigation bar dynamically
+          rootMargin: "-84px 0% -35% 0%", // Will be adjusted if nav height changes
+          threshold: 0.1,
+        }
+      );
+
+      headings.forEach((heading) => {
+        observer.observe(heading);
+      });
+
+      return observer;
+    };
+
+    // Initial setup with a small delay to ensure content is rendered
+    let observer: IntersectionObserver | null = null;
+
+    const setupObserver = () => {
+      if (observer) {
+        observer.disconnect();
       }
-    );
+      observer = addIdsToHeadings();
+    };
 
-    headings.forEach((heading) => {
-      observer.observe(heading);
+    // Initial setup with delay
+    setTimeout(setupObserver, 100);
+
+    // Set up a MutationObserver to handle dynamic content changes
+    const mutationObserver = new MutationObserver(() => {
+      setTimeout(setupObserver, 50);
     });
+
+    // Observe changes to the article content
+    const articleContent = document.querySelector(".article-content");
+    if (articleContent) {
+      mutationObserver.observe(articleContent, {
+        childList: true,
+        subtree: true,
+      });
+    }
 
     return () => {
-      headings.forEach((heading) => {
-        observer.unobserve(heading);
-      });
+      if (observer) {
+        observer.disconnect();
+      }
+      mutationObserver.disconnect();
     };
   }, [tocItems]);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
+    console.log("Attempting to scroll to section with ID:", id);
+
+    // First try to find by ID
+    let element = document.getElementById(id);
+
+    // If not found by ID, try to find by text content
+    if (!element) {
+      console.log("Element not found by ID, searching by text content...");
+      const headings = document.querySelectorAll(
+        ".article-content h1, .article-content h2"
+      );
+      for (const heading of headings) {
+        const text = heading.textContent || "";
+        const headingId = text
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-")
+          .trim();
+
+        if (headingId === id) {
+          element = heading as HTMLElement;
+          console.log("Found element by text content:", text);
+          break;
+        }
+      }
+    }
+
     if (element) {
-      element.scrollIntoView({
+      console.log("Scrolling to element:", element);
+
+      // Get the element's position relative to the viewport
+      const rect = element.getBoundingClientRect();
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      // Calculate the target scroll position
+      // Dynamically detect navigation height or use fallback
+      const navElement = document.querySelector("nav");
+      const navHeight = navElement ? navElement.offsetHeight : 64;
+      const padding = 20; // Additional padding for better visibility
+
+      // Calculate the target position so the header is visible at the top
+      const targetScrollTop = scrollTop + rect.top - navHeight - padding;
+
+      // Ensure we don't scroll past the top of the page
+      const finalScrollTop = Math.max(0, targetScrollTop);
+
+      console.log(
+        `Scrolling to position: ${finalScrollTop}px (nav height: ${navHeight}px)`
+      );
+
+      // Smooth scroll to the calculated position
+      window.scrollTo({
+        top: finalScrollTop,
         behavior: "smooth",
-        block: "start",
       });
+    } else {
+      console.error("Could not find element with ID:", id);
+      console.log(
+        "Available headings:",
+        Array.from(
+          document.querySelectorAll(".article-content h1, .article-content h2")
+        ).map((h) => ({ text: h.textContent, id: h.id }))
+      );
     }
   };
 

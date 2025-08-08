@@ -8,8 +8,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-love-ya-like-a-sister);
+  --font-body: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -208,12 +210,14 @@ body {
 }
 
 .image-hover-shadow:hover {
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 .image-hover-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 /* Special Effects */
@@ -261,18 +265,18 @@ body {
     max-width: 100%;
     margin: 1rem 0;
   }
-  
+
   .image-full-width {
     margin-left: 0;
     transform: none;
     width: 100%;
   }
-  
+
   .wrapper-full-width {
     margin: 2rem 0;
     width: 100%;
   }
-  
+
   .wrapper-float-left,
   .wrapper-float-right {
     float: none;
@@ -331,6 +335,7 @@ body {
   font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.2;
+  font-family: var(--font-love-ya-like-a-sister), cursive;
 }
 
 .article-content h2 {
@@ -339,6 +344,7 @@ body {
   font-size: 1.875rem;
   font-weight: 600;
   line-height: 1.3;
+  font-family: var(--font-love-ya-like-a-sister), cursive;
 }
 
 .article-content h3 {
@@ -347,11 +353,13 @@ body {
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.4;
+  font-family: var(--font-love-ya-like-a-sister), cursive;
 }
 
 .article-content p {
   margin-bottom: 1.5rem;
   color: #374151;
+  font-family: var(--font-inter), sans-serif;
 }
 
 .article-content blockquote {
@@ -360,6 +368,7 @@ body {
   margin: 2rem 0;
   font-style: italic;
   color: #6b7280;
+  font-family: var(--font-inter), sans-serif;
 }
 
 .article-content code {

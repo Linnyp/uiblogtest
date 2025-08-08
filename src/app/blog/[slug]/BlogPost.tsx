@@ -102,12 +102,12 @@ export default function BlogPostComponent({ post, relatedPosts }: BlogPostProps)
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight font-love-ya-like-a-sister">
               {post.title}
             </h1>
 
             {/* Description */}
-            <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+            <p className="text-xl text-gray-600 mb-6 leading-relaxed font-inter">
               {post.description}
             </p>
 
@@ -120,7 +120,7 @@ export default function BlogPostComponent({ post, relatedPosts }: BlogPostProps)
                     <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:items-center">
+                <div className="flex flex-col sm:flex-row sm:items-center font-inter">
                   <span className="font-medium">{post.author}</span>
                   <span className="hidden sm:inline mx-2">•</span>
                   <time dateTime={post.date} className="text-sm sm:text-base">
@@ -207,21 +207,23 @@ export default function BlogPostComponent({ post, relatedPosts }: BlogPostProps)
             <article className="flex-1 max-w-4xl">
               <div 
                 className="article-content prose prose-lg max-w-none overflow-hidden
-                           prose-headings:font-bold prose-headings:text-gray-900 prose-headings:scroll-mt-16
-                           prose-h1:text-3xl prose-h1:mt-12 prose-h1:mb-6
-                           prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6
-                           prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
-                           prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
-                           prose-a:text-blue-600 prose-a:hover:text-blue-800 prose-a:transition-colors
-                           prose-strong:text-gray-900 prose-strong:font-semibold
-                           prose-code:bg-gray-100 prose-code:text-gray-800 prose-code:px-2 prose-code:py-1 prose-code:rounded
-                           prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto
-                           prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600
-                           prose-ul:list-disc prose-ul:pl-6 prose-ol:list-decimal prose-ol:pl-6
-                           prose-li:mb-2 prose-li:text-gray-700
-                           prose-table:border-collapse prose-table:border prose-table:border-gray-300
-                           prose-th:border prose-th:border-gray-300 prose-th:bg-gray-50 prose-th:p-3 prose-th:font-semibold
-                           prose-td:border prose-td:border-gray-300 prose-td:p-3
+                           font-inter
+                           prose-headings:font-bold prose-headings:text-gray-900 prose-headings:scroll-mt-16 prose-headings:font-love-ya-like-a-sister
+                           prose-h1:text-3xl prose-h1:mt-12 prose-h1:mb-6 prose-h1:font-love-ya-like-a-sister
+                           prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:font-love-ya-like-a-sister
+                           prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:font-love-ya-like-a-sister
+                           prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:font-inter
+                           prose-a:text-blue-600 prose-a:hover:text-blue-800 prose-a:transition-colors prose-a:font-inter
+                           prose-strong:text-gray-900 prose-strong:font-semibold prose-strong:font-inter
+                           prose-code:bg-gray-100 prose-code:text-gray-800 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:font-geist-mono
+                           prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto prose-pre:font-geist-mono
+                           prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600 prose-blockquote:font-inter
+                           prose-ul:list-disc prose-ul:pl-6 prose-ul:font-inter
+                           prose-ol:list-decimal prose-ol:pl-6 prose-ol:font-inter
+                           prose-li:mb-2 prose-li:text-gray-700 prose-li:font-inter
+                           prose-table:border-collapse prose-table:border prose-table:border-gray-300 prose-table:font-inter
+                           prose-th:border prose-th:border-gray-300 prose-th:bg-gray-50 prose-th:p-3 prose-th:font-semibold prose-th:font-inter
+                           prose-td:border prose-td:border-gray-300 prose-td:p-3 prose-td:font-inter
                            prose-img:max-w-full prose-img:h-auto prose-img:rounded-lg prose-img:shadow-md prose-img:mx-auto
                            prose-figure:max-w-full prose-figure:overflow-hidden"
                 dangerouslySetInnerHTML={{ __html: post.contentHtml }}
