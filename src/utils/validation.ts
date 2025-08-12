@@ -1,6 +1,6 @@
 import { parseISO, isValid } from 'date-fns'
 import { BlogPostFrontmatter } from '@/types/blog'
-import { BLOG_CONFIG, isValidCategory, isValidDifficulty } from '@/lib/config'
+import { BLOG_CONFIG, isValidCategory } from '@/lib/config'
 
 export interface ValidationError {
   field: string
@@ -48,14 +48,6 @@ export function validateFrontmatter(
     })
   }
 
-  // Difficulty validation
-  if (frontmatter.difficulty && !isValidDifficulty(frontmatter.difficulty)) {
-    warnings.push({
-      field: 'difficulty',
-      message: `Invalid difficulty. Must be one of: ${BLOG_CONFIG.difficulties.join(', ')}`,
-      severity: 'warning'
-    })
-  }
 
   // Tags validation
   if (frontmatter.tags && frontmatter.tags.length > 10) {
@@ -85,12 +77,8 @@ export function sanitizeFrontmatter(
     tags: frontmatter.tags?.slice(0, 10) || [],
     heroImage: frontmatter.heroImage || undefined,
     featured: frontmatter.featured || false,
-    difficulty: isValidDifficulty(frontmatter.difficulty || '') 
-      ? frontmatter.difficulty! 
-      : 'Beginner',
     seoKeywords: frontmatter.seoKeywords?.slice(0, 15) || [],
     lastUpdated: frontmatter.lastUpdated || undefined,
-    tableOfContents: frontmatter.tableOfContents || false,
     newsletter: frontmatter.newsletter || true,
     comments: frontmatter.comments || true,
     socialSharing: frontmatter.socialSharing || true,

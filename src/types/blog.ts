@@ -9,9 +9,7 @@ export interface BlogPostFrontmatter {
   heroImage?: string                     // Full URL to image
   featured?: boolean
   seoKeywords?: string[]
-  difficulty?: BlogDifficulty
   lastUpdated?: string
-  tableOfContents?: boolean
   newsletter?: boolean
   comments?: boolean
   socialSharing?: boolean
@@ -35,7 +33,6 @@ export type BlogCategory =
   | 'Getting Started'
   | 'Tutorial'
 
-export type BlogDifficulty = 'Beginner' | 'Intermediate' | 'Advanced'
 
 export interface SearchResult extends BlogPostPreview {
   score: number

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { format } from 'date-fns'
-import { BlogPostPreview, BlogCategory, BlogDifficulty } from '@/types/blog'
+import { BlogPostPreview, BlogCategory } from '@/types/blog'
 
 interface BlogCardProps {
   post: BlogPostPreview
@@ -27,7 +27,6 @@ export function BlogCard({ post, showExcerpt = true, className = '' }: BlogCardP
         <div className="p-6">
           <div className="flex items-center gap-2 mb-3">
             <CategoryBadge category={post.category} />
-            {post.difficulty && <DifficultyBadge difficulty={post.difficulty} />}
           </div>
           
           <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
@@ -145,23 +144,6 @@ export function CategoryBadge({ category, variant = 'default' }: CategoryBadgePr
   )
 }
 
-interface DifficultyBadgeProps {
-  difficulty: BlogDifficulty
-}
-
-export function DifficultyBadge({ difficulty }: DifficultyBadgeProps) {
-  const colors = {
-    'Beginner': 'bg-green-100 text-green-700 border-green-200',
-    'Intermediate': 'bg-yellow-100 text-yellow-700 border-yellow-200',
-    'Advanced': 'bg-red-100 text-red-700 border-red-200',
-  }
-
-  return (
-    <span className={`px-2 py-1 rounded-full text-xs font-medium border ${colors[difficulty]}`}>
-      {difficulty}
-    </span>
-  )
-}
 
 interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg'

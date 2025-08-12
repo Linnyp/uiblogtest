@@ -261,14 +261,14 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
 
         {/* CTA Section */}
         <div className="border-t border-white/20 pt-5 text-center">
-          <h4 className="text-lg font-semibold text-yellow-300 mb-4">
+          <h4 className="text-lg font-semibold text-[#FF9C00] mb-4">
             Still Haven't Tried Ord-X?
           </h4>
           <ol className="list-decimal list-inside mb-5 space-y-2 text-sm">
             <li>
               <a
                 href="#connect"
-                className="text-white/90 underline decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
+                className="text-white/90 decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
               >
                 Connect a wallet
               </a>
@@ -276,7 +276,7 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
             <li>
               <a
                 href="#claim"
-                className="text-white/90 underline decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
+                className="text-white/90 decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
               >
                 Claim daily rewards
               </a>
@@ -284,7 +284,7 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
             <li>
               <a
                 href="#inscribe"
-                className="text-white/90 underline decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
+                className="text-white/90 decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
               >
                 Start inscribing your Bitcoin collectibles
               </a>

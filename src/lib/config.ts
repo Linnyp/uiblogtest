@@ -17,7 +17,6 @@ export const SITE_CONFIG = {
 
 export const BLOG_CONFIG = {
   categories: ['Guides', 'News', 'Tools', 'Analysis', 'Getting Started', 'Tutorial'] as const,
-  difficulties: ['Beginner', 'Intermediate', 'Advanced'] as const,
   postsPerPage: 12,
   excerptLength: 160,
   cacheTimeout: 5 * 60 * 1000, // 5 minutes
@@ -40,6 +39,3 @@ export function isValidCategory(category: string): category is typeof BLOG_CONFI
   return (BLOG_CONFIG.categories as readonly string[]).includes(category)
 }
 
-export function isValidDifficulty(difficulty: string): difficulty is typeof BLOG_CONFIG.difficulties[number] {
-  return (BLOG_CONFIG.difficulties as readonly string[]).includes(difficulty)
-}

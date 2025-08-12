@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 export default function MobileCTA() {
   return (
@@ -17,24 +17,33 @@ export default function MobileCTA() {
               🐻
             </div>
           </div>
-          
+
           <div className="pt-8">
-            <h4 className="text-lg font-semibold text-yellow-300 mb-4">
+            <h4 className="text-lg font-semibold text-[#FF9C00] mb-4">
               Still Haven't Tried Ord-X?
             </h4>
             <ol className="list-decimal list-inside mb-5 space-y-2 text-sm">
               <li>
-                <a href="#connect" className="text-white/90 underline decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300">
+                <a
+                  href="#connect"
+                  className="text-white/90 decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
+                >
                   Connect a wallet
                 </a>
               </li>
               <li>
-                <a href="#claim" className="text-white/90 underline decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300">
+                <a
+                  href="#claim"
+                  className="text-white/90 decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
+                >
                   Claim daily rewards
                 </a>
               </li>
               <li>
-                <a href="#inscribe" className="text-white/90 underline decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300">
+                <a
+                  href="#inscribe"
+                  className="text-white/90 decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
+                >
                   Start inscribing your Bitcoin collectibles
                 </a>
               </li>
@@ -46,5 +55,5 @@ export default function MobileCTA() {
         </div>
       </div>
     </div>
-  )
+  );
 }
