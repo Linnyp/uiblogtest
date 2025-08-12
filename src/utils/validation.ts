@@ -79,8 +79,6 @@ export function sanitizeFrontmatter(
     featured: frontmatter.featured || false,
     seoKeywords: frontmatter.seoKeywords?.slice(0, 15) || [],
     lastUpdated: frontmatter.lastUpdated || undefined,
-    newsletter: frontmatter.newsletter || true,
-    comments: frontmatter.comments || true,
     socialSharing: frontmatter.socialSharing || true,
   }
 }

@@ -10,8 +10,6 @@ export interface BlogPostFrontmatter {
   featured?: boolean
   seoKeywords?: string[]
   lastUpdated?: string
-  newsletter?: boolean
-  comments?: boolean
   socialSharing?: boolean
 }
 
