@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
 import { BlogPost, BlogPostPreview } from "@/types/blog";
+import { calculateReadTime } from "@/utils/validation";
 import {
   CategoryBadge,
 } from "@/app/components/BlogComponents";
@@ -102,7 +103,7 @@ export default function BlogPostComponent({
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <CategoryBadge category={post.category} />
               <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                {post.readTime}
+                {calculateReadTime(post.estimatedWordCount)}
               </span>
               <span className="text-gray-500 text-sm">
                 {post.estimatedWordCount} words

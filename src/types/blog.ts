@@ -3,7 +3,6 @@ export interface BlogPostFrontmatter {
   description: string
   author: string
   date: string                           // YYYY-MM-DD format
-  readTime?: string                      // e.g., "5 min read"
   category: BlogCategory
   tags?: string[]
   heroImage?: string                     // Full URL to image

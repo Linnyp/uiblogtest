@@ -61,6 +61,19 @@ export function validateFrontmatter(
   return { isValid: errors.length === 0, errors, warnings }
 }
 
+export function calculateReadTime(wordCount: number): string {
+  const wordsPerMinute = 200 // Average reading speed
+  const minutes = Math.ceil(wordCount / wordsPerMinute)
+  
+  if (minutes < 1) {
+    return '< 1 min read'
+  } else if (minutes === 1) {
+    return '1 min read'
+  } else {
+    return `${minutes} min read`
+  }
+}
+
 export function sanitizeFrontmatter(
   frontmatter: Partial<BlogPostFrontmatter>, 
   filename: string
@@ -73,7 +86,6 @@ export function sanitizeFrontmatter(
     category: isValidCategory(frontmatter.category || '') 
       ? frontmatter.category! 
       : 'Guides',
-    readTime: frontmatter.readTime || '5 min read',
     tags: frontmatter.tags?.slice(0, 10) || [],
     heroImage: frontmatter.heroImage || undefined,
     featured: frontmatter.featured || false,
