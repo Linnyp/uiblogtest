@@ -5,10 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
 import { BlogPost, BlogPostPreview } from "@/types/blog";
-import { calculateReadTime } from "@/utils/validation";
-import {
-  CategoryBadge,
-} from "@/app/components/BlogComponents";
+import { CategoryBadge } from "@/app/components/BlogComponents";
 import TableOfContents from "@/app/components/TableOfContents";
 import MobileCTA from "@/app/components/MobileCTA";
 
@@ -98,17 +95,6 @@ export default function BlogPostComponent({
                 ← Back to Blog
               </Link>
             </nav>
-
-            {/* Meta Information */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <CategoryBadge category={post.category} />
-              <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                {calculateReadTime(post.estimatedWordCount)}
-              </span>
-              <span className="text-gray-500 text-sm">
-                {post.estimatedWordCount} words
-              </span>
-            </div>
 
             {/* Title */}
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight font-love-ya-like-a-sister">
@@ -264,24 +250,6 @@ export default function BlogPostComponent({
                 dangerouslySetInnerHTML={{ __html: post.contentHtml }}
               />
 
-              {/* Tags */}
-              {post.tags && post.tags.length > 0 && (
-                <div className="mt-12 pt-8 border-t border-gray-200">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-3">
-                    Tags
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-100 transition-colors"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
 
               {/* Mobile CTA - Only show on mobile */}
               <MobileCTA />
@@ -329,7 +297,6 @@ export default function BlogPostComponent({
             </div>
           </section>
         )}
-
 
         {/* Image Modal for Zoom */}
         {imageModal && (

@@ -49,14 +49,6 @@ export function validateFrontmatter(
   }
 
 
-  // Tags validation
-  if (frontmatter.tags && frontmatter.tags.length > 10) {
-    warnings.push({
-      field: 'tags',
-      message: 'Too many tags. Maximum 10 recommended',
-      severity: 'warning'
-    })
-  }
 
   return { isValid: errors.length === 0, errors, warnings }
 }
@@ -86,7 +78,6 @@ export function sanitizeFrontmatter(
     category: isValidCategory(frontmatter.category || '') 
       ? frontmatter.category! 
       : 'Guides',
-    tags: frontmatter.tags?.slice(0, 10) || [],
     heroImage: frontmatter.heroImage || undefined,
     featured: frontmatter.featured || false,
     seoKeywords: frontmatter.seoKeywords?.slice(0, 15) || [],

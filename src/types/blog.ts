@@ -4,7 +4,6 @@ export interface BlogPostFrontmatter {
   author: string
   date: string                           // YYYY-MM-DD format
   category: BlogCategory
-  tags?: string[]
   heroImage?: string                     // Full URL to image
   featured?: boolean
   seoKeywords?: string[]
@@ -20,6 +19,7 @@ export interface BlogPost extends BlogPostFrontmatter {
 
 export interface BlogPostPreview extends BlogPostFrontmatter {
   slug: string                           // Used for routing
+  estimatedWordCount: number
 }
 
 export type BlogCategory = 

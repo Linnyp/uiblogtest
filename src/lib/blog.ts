@@ -152,7 +152,7 @@ export async function getRelatedPosts(currentSlug: string, limit: number = 3): P
   
   if (!currentPost) return []
   
-  // Find posts with similar tags or same category
+  // Find posts with same category
   const relatedPosts = allPosts
     .filter(post => post.slug !== currentSlug)
     .map(post => {
@@ -162,12 +162,6 @@ export async function getRelatedPosts(currentSlug: string, limit: number = 3): P
       if (post.category === currentPost.category) {
         score += 3
       }
-      
-      // Shared tags increase score
-      const sharedTags = post.tags?.filter(tag => 
-        currentPost.tags?.includes(tag)
-      ).length || 0
-      score += sharedTags * 2
       
       return { post, score }
     })

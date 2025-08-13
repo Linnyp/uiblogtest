@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { format } from 'date-fns'
 import { BlogPostPreview, BlogCategory } from '@/types/blog'
-import { calculateReadTime } from '@/utils/validation'
 
 interface BlogCardProps {
   post: BlogPostPreview
@@ -45,28 +44,8 @@ export function BlogCard({ post, showExcerpt = true, className = '' }: BlogCardP
               <span>By {post.author}</span>
               <span>{format(new Date(post.date), 'MMM dd, yyyy')}</span>
             </div>
-            <span className="bg-gray-100 px-2 py-1 rounded-full text-xs">
-              {calculateReadTime(post.estimatedWordCount || 0)}
-            </span>
           </div>
           
-          {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1 mt-3">
-              {post.tags.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-              {post.tags.length > 3 && (
-                <span className="text-xs text-gray-400">
-                  +{post.tags.length - 3} more
-                </span>
-              )}
-            </div>
-          )}
         </div>
       </article>
     </Link>
@@ -113,7 +92,6 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
           <div className="flex items-center gap-6 text-sm opacity-80">
             <span>By {post.author}</span>
             <span>{format(new Date(post.date), 'MMM dd, yyyy')}</span>
-            <span>{calculateReadTime(post.estimatedWordCount || 0)}</span>
           </div>
         </div>
       </article>
