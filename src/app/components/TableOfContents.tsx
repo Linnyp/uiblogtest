@@ -265,30 +265,9 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
             Still Haven't Tried Ord-X?
           </h4>
           <ol className="list-decimal list-inside mb-5 space-y-2 text-sm">
-            <li>
-              <a
-                href="#connect"
-                className="text-white/90 decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
-              >
-                Connect a wallet
-              </a>
-            </li>
-            <li>
-              <a
-                href="#claim"
-                className="text-white/90 decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
-              >
-                Claim daily rewards
-              </a>
-            </li>
-            <li>
-              <a
-                href="#inscribe"
-                className="text-white/90 decoration-white/50 hover:decoration-yellow-300 hover:text-yellow-300"
-              >
-                Start inscribing your Bitcoin collectibles
-              </a>
-            </li>
+            <li>Connect a wallet</li>
+            <li>Claim daily rewards</li>
+            <li>Start inscribing your Bitcoin collectibles</li>
           </ol>
           <button className="w-full max-w-48 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold py-3 px-5 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 text-sm">
             Connect Wallet

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { BlogPost, BlogPostPreview } from "@/types/blog";
 import { CategoryBadge } from "@/app/components/BlogComponents";
+import { calculateReadTime } from "@/utils/validation";
 import TableOfContents from "@/app/components/TableOfContents";
 import MobileCTA from "@/app/components/MobileCTA";
 
@@ -105,6 +106,14 @@ export default function BlogPostComponent({
             <p className="text-xl text-gray-600 mb-6 leading-relaxed font-inter">
               {post.description}
             </p>
+
+            {/* Category Badge and Read Time */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <CategoryBadge category={post.category} />
+              <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                {calculateReadTime(post.estimatedWordCount)}
+              </span>
+            </div>
 
             {/* Author and Date */}
             <div className="flex items-center justify-between">
@@ -227,26 +236,7 @@ export default function BlogPostComponent({
             {/* Main Article Content */}
             <article className="flex-1 max-w-4xl">
               <div
-                className="article-content prose prose-lg max-w-none overflow-hidden
-                           font-inter
-                           prose-headings:font-bold prose-headings:text-gray-900 prose-headings:scroll-mt-16 prose-headings:font-love-ya-like-a-sister
-                           prose-h1:text-3xl prose-h1:mt-12 prose-h1:mb-6 prose-h1:font-love-ya-like-a-sister
-                           prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:font-love-ya-like-a-sister
-                           prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:font-love-ya-like-a-sister
-                           prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:font-inter
-                           prose-a:text-blue-600 prose-a:hover:text-blue-800 prose-a:transition-colors prose-a:font-inter
-                           prose-strong:text-gray-900 prose-strong:font-semibold prose-strong:font-inter
-                           prose-code:bg-gray-100 prose-code:text-gray-800 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:font-geist-mono
-                           prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto prose-pre:font-geist-mono
-                           prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600 prose-blockquote:font-inter
-                           prose-ul:list-disc prose-ul:pl-6 prose-ul:font-inter
-                           prose-ol:list-decimal prose-ol:pl-6 prose-ol:font-inter
-                           prose-li:mb-2 prose-li:text-gray-700 prose-li:font-inter
-                           prose-table:border-collapse prose-table:border prose-table:border-gray-300 prose-table:font-inter
-                           prose-th:border prose-th:border-gray-300 prose-th:bg-gray-50 prose-th:p-3 prose-th:font-semibold prose-th:font-inter
-                           prose-td:border prose-td:border-gray-300 prose-td:p-3 prose-td:font-inter
-                           prose-img:max-w-full prose-img:h-auto prose-img:rounded-lg prose-img:shadow-md prose-img:mx-auto
-                           prose-figure:max-w-full prose-figure:overflow-hidden"
+                className="article-content max-w-none overflow-hidden font-inter"
                 dangerouslySetInnerHTML={{ __html: post.contentHtml }}
               />
 
