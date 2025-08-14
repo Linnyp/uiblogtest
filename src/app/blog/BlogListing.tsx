@@ -40,12 +40,7 @@ export default function BlogListing({
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
       filtered = filtered.filter((post) => {
-        const searchText = [
-          post.title,
-          post.description,
-          post.author,
-          ...(post.tags || []),
-        ]
+        const searchText = [post.title, post.description, post.author]
           .join(" ")
           .toLowerCase();
 
@@ -68,7 +63,7 @@ export default function BlogListing({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-primary">
       {/* Hero Section */}
       <div className="bg-[#64748B] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -100,9 +95,6 @@ export default function BlogListing({
         {/* Featured Post */}
         {featuredPost && !searchQuery && selectedCategory === "All" && (
           <div className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Featured Article
-            </h2>
             <FeaturedCard post={featuredPost} />
           </div>
         )}

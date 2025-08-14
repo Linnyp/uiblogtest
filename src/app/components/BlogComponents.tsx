@@ -33,7 +33,7 @@ export function BlogCard({
             <CategoryBadge category={post.category} />
           </div>
 
-          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-secondary transition-colors line-clamp-2">
             {post.title}
           </h3>
 
@@ -84,7 +84,7 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
             <CategoryBadge category={post.category} variant="light" />
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 group-hover:text-yellow-200 transition-colors">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 group-hover:text-white transition-colors">
             {post.title}
           </h2>
 
@@ -111,34 +111,9 @@ export function CategoryBadge({
   category,
   variant = "default",
 }: CategoryBadgeProps) {
-  const colors = {
-    Guides:
-      variant === "light"
-        ? "bg-green-100 text-green-800"
-        : "bg-green-600 text-white",
-    News:
-      variant === "light" ? "bg-red-100 text-red-800" : "bg-red-600 text-white",
-    Tools:
-      variant === "light"
-        ? "bg-blue-100 text-blue-800"
-        : "bg-blue-600 text-white",
-    Analysis:
-      variant === "light"
-        ? "bg-purple-100 text-purple-800"
-        : "bg-purple-600 text-white",
-    "Getting Started":
-      variant === "light"
-        ? "bg-yellow-100 text-yellow-800"
-        : "bg-yellow-600 text-white",
-    Tutorial:
-      variant === "light"
-        ? "bg-indigo-100 text-indigo-800"
-        : "bg-indigo-600 text-white",
-  };
-
   return (
     <span
-      className={`px-2 py-1 rounded-full text-xs font-medium ${colors[category]}`}
+      className={`px-2 py-1 rounded-full text-xs font-medium bg-secondary text-primary`}
     >
       {category}
     </span>
