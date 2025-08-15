@@ -106,7 +106,7 @@ export function validateAndOptimizeImageUrl(url: string): string {
     }
     
     return url
-  } catch (error) {
+  } catch {
     console.error(`Invalid image URL: ${url}`)
     return '' // Return empty string for invalid URLs
   }

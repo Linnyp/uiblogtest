@@ -24,7 +24,7 @@ export default function MobileCTA() {
         <div className="relative z-10 bg-slate-600 rounded-2xl p-6 pt-12 text-white text-center">
 
           <h4 className="text-lg font-semibold text-[#FF9C00] mb-4">
-            Still Haven't Tried Ord-X?
+            Still Haven&apos;t Tried Ord-X?
           </h4>
             <ol className="list-decimal list-inside mb-5 space-y-2 text-sm">
               <li>

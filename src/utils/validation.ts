@@ -10,7 +10,7 @@ export interface ValidationError {
 
 export function validateFrontmatter(
   frontmatter: Partial<BlogPostFrontmatter>, 
-  filename: string
+  _filename: string
 ): { isValid: boolean; errors: ValidationError[]; warnings: ValidationError[] } {
   const errors: ValidationError[] = []
   const warnings: ValidationError[] = []

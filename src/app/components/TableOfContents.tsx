@@ -262,7 +262,7 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
         {/* CTA Section */}
         <div className="border-t border-white/20 pt-5 text-center">
           <h4 className="text-lg font-semibold text-secondary mb-4">
-            Still Haven't Tried Ord-X?
+            Still Haven&apos;t Tried Ord-X?
           </h4>
           <ol className="list-decimal list-inside mb-5 space-y-2 text-sm">
             <li>Connect a wallet</li>
