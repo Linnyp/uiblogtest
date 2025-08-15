@@ -55,7 +55,6 @@ export default function BlogPostComponent({
   const handleShare = async (platform: "twitter" | "linkedin" | "facebook") => {
     const url = encodeURIComponent(window.location.href);
     const title = encodeURIComponent(post.title);
-    const description = encodeURIComponent(post.description);
 
     const shareUrls = {
       twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
@@ -294,10 +293,13 @@ export default function BlogPostComponent({
             onClick={() => setImageModal(null)}
           >
             <div className="relative max-w-5xl max-h-full">
-              <img
+              <Image
                 src={imageModal}
                 alt="Zoomed image"
+                width={1200}
+                height={800}
                 className="max-w-full max-h-full object-contain rounded-lg"
+                sizes="100vw"
               />
               <button
                 onClick={() => setImageModal(null)}

@@ -60,7 +60,7 @@ export async function generateMetadata({
         canonical: `${SITE_CONFIG.siteUrl}/blog/${slug}`,
       },
     };
-  } catch (error) {
+  } catch {
     return {
       title: "Post Not Found",
       description: "The requested blog post could not be found.",
