@@ -10,6 +10,7 @@ export interface ValidationError {
 
 export function validateFrontmatter(
   frontmatter: Partial<BlogPostFrontmatter>, 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _filename: string
 ): { isValid: boolean; errors: ValidationError[]; warnings: ValidationError[] } {
   const errors: ValidationError[] = []

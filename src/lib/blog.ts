@@ -105,8 +105,12 @@ export async function getAllBlogPosts(): Promise<BlogPostPreview[]> {
           
           const sanitizedData = sanitizeFrontmatter(matterResult.data, file.name)
           
+          // Calculate word count for preview
+          const wordCount = matterResult.content.split(/\s+/).filter(word => word.length > 0).length
+          
           return {
             slug: file.name.replace(/\.md$/, ''),
+            estimatedWordCount: wordCount,
             ...sanitizedData,
           }
         } catch (error) {
