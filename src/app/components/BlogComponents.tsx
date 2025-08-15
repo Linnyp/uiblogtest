@@ -111,10 +111,11 @@ export function CategoryBadge({
   category,
   variant = "default",
 }: CategoryBadgeProps) {
-  const variantClasses = variant === "light" 
-    ? "bg-white/20 text-black" 
-    : "bg-secondary text-primary";
-    
+  const variantClasses =
+    variant === "light"
+      ? "bg-white/20 text-black"
+      : "bg-secondary text-primary";
+
   return (
     <span
       className={`px-2 py-1 rounded-full text-xs font-medium ${variantClasses}`}

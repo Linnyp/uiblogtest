@@ -333,6 +333,58 @@ body {
   line-height: 1.7;
 }
 
+/* List Styling - Restore default list styles within article content */
+.article-content ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 0;
+}
+
+.article-content ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 0;
+}
+
+.article-content ul ul {
+  list-style-type: circle;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.article-content ul ul ul {
+  list-style-type: square;
+}
+
+.article-content ol ol {
+  list-style-type: lower-alpha;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.article-content ol ol ol {
+  list-style-type: lower-roman;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: #374151;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.article-content li p {
+  margin-bottom: 0.5rem;
+}
+
+.article-content li:last-child {
+  margin-bottom: 0;
+}
+
 /* Header title styling */
 header h1 {
   font-family: var(--font-love-ya-like-a-sister), cursive;
