@@ -65,7 +65,7 @@ export default function BlogListing({
   return (
     <div className="min-h-screen bg-primary">
       {/* Hero Section */}
-      <div className="bg-[#64748B] text-white">
+      <div className="bg-secondary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <h1

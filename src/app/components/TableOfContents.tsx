@@ -210,8 +210,8 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
       </div>
 
       {/* Main TOC Content */}
-      <div className="relative z-10 bg-slate-600 rounded-2xl p-5 pt-12 text-white">
-        <h3 className="text-center text-lg font-semibold mb-5 underline underline-offset-4 decoration-white/50">
+      <div className="relative z-10 bg-gray-300 rounded-2xl p-5 pt-12 text-black">
+        <h3 className="text-center text-lg font-semibold mb-5  decoration-white/50">
           Table of Contents
         </h3>
 
@@ -235,13 +235,13 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
                     }
                     ${
                       item.level === 2
-                        ? "text-white/80 text-xs font-normal"
+                        ? "text-black/80 text-xs font-normal"
                         : "text-white"
                     }
                   `}
                 >
                   {item.level === 2 && (
-                    <span className="text-orange-400 mr-2">
+                    <span className="text-secondary mr-2">
                       {
                         tocItems.filter(
                           (t) =>
@@ -261,7 +261,7 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
 
         {/* CTA Section */}
         <div className="border-t border-white/20 pt-5 text-center">
-          <h4 className="text-lg font-semibold text-[#FF9C00] mb-4">
+          <h4 className="text-lg font-semibold text-secondary mb-4">
             Still Haven't Tried Ord-X?
           </h4>
           <ol className="list-decimal list-inside mb-5 space-y-2 text-sm">

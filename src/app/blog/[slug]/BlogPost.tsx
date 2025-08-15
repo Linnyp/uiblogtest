@@ -213,7 +213,7 @@ export default function BlogPostComponent({
                     src={post.heroImage}
                     alt={post.title}
                     fill
-                    className="object-cover"
+                    className=""
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1024px, 1024px"
                     priority
                   />
@@ -239,7 +239,6 @@ export default function BlogPostComponent({
                 className="article-content max-w-none overflow-hidden font-inter"
                 dangerouslySetInnerHTML={{ __html: post.contentHtml }}
               />
-
 
               {/* Mobile CTA - Only show on mobile */}
               <MobileCTA />
