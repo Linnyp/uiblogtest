@@ -7,7 +7,7 @@ import puppy2 from "@/assets/puppy2.png";
 export default function MobileCTA() {
   return (
     <div className="lg:hidden mt-8">
-      <div className="relative w-full max-w-sm mx-auto">
+      <div className="relative w-full">
         {/* Decorative Characters */}
         <div className="absolute -top-18 left-2 z-0">
           <div className="w-18 h-22 rounded-full transform -rotate-12 flex items-center justify-center text-2xl">

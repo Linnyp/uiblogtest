@@ -15,6 +15,53 @@ interface ParagraphNode extends Node {
   children: Node[]
 }
 
+interface LinkNode extends Node {
+  type: 'link'
+  url: string
+  title?: string
+  children: Node[]
+}
+
+// Custom remark plugin to make external links open in new window
+function remarkLinkEnhancer() {
+  return (tree: Node) => {
+    visit(tree, 'link', (node: LinkNode, index, parent) => {
+      const { url, title } = node
+      
+      // Check if it's an external link (not relative, not anchor)
+      const isExternal = url.startsWith('http://') || url.startsWith('https://') || url.startsWith('//')
+      const isAnchor = url.startsWith('#')
+      
+      if (isExternal && !isAnchor) {
+        // Convert link node to HTML with target="_blank" and rel="noopener noreferrer"
+        const linkText = extractTextFromChildren(node.children)
+        const enhancedHtml = `<a href="${url}" target="_blank" rel="noopener noreferrer"${title ? ` title="${title}"` : ''}>${linkText}</a>`
+        
+        const htmlNode = {
+          type: 'html',
+          value: enhancedHtml
+        }
+        
+        if (parent && typeof index === 'number') {
+          parent.children[index] = htmlNode
+        }
+      }
+    })
+  }
+}
+
+// Helper function to extract text content from AST nodes
+function extractTextFromChildren(children: Node[]): string {
+  return children.map((child: any) => {
+    if (child.type === 'text') {
+      return child.value
+    } else if (child.children) {
+      return extractTextFromChildren(child.children)
+    }
+    return ''
+  }).join('')
+}
+
 // Custom remark plugin to enhance image processing
 function remarkImageEnhancer() {
   return (tree: Node) => {
@@ -129,6 +176,7 @@ function generateWrapperClasses(options: Record<string, string>): string {
 // Enhanced content processing function
 export async function processArticleContent(content: string): Promise<string> {
   const processedContent = await remark()
+    .use(remarkLinkEnhancer) // Custom link processing for external links
     .use(remarkImageEnhancer) // Custom image processing
     .use(html, { sanitize: false })
     .process(content)
