@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { List, Wallet } from "lucide-react";
+import { List } from "lucide-react";
 
 interface TOCItem {
   id: string;
@@ -198,14 +198,14 @@ export default function TableOfContentsTest({
   return (
     <div className="relative w-full max-w-sm">
       {/* Main TOC Content - MODIFY STYLES HERE */}
-      <div className="relative z-10 bg-gray-300 rounded-2xl py-8 text-black">
+      <div className="relative z-10 py-8">
         <h3 className="text-center text-md font-semibold mb-5 decoration-white/50 flex items-center justify-center gap-2">
           <List size={20} className="text-secondary" />
           Table of Contents
         </h3>
 
         {/* Navigation Links - MODIFY STYLES HERE */}
-        <nav className="mb-8">
+        <nav>
           <ul className="list-none p-0 m-0">
             {tocItems.map((item) => (
               <li
@@ -244,21 +244,6 @@ export default function TableOfContentsTest({
           </ul>
         </nav>
 
-        {/* CTA Section - MODIFY STYLES HERE */}
-        <div className="border-t border-white/20 pt-5 text-center">
-          <h4 className="text-md font-semibold text-black mb-4">
-            Still Haven&apos;t Tried Ord-X?
-          </h4>
-          <ol className="list-decimal list-inside mb-5 space-y-2 text-sm">
-            <li>Connect a wallet</li>
-            <li>Claim daily rewards</li>
-            <li>Start inscribing your Bitcoin collectibles</li>
-          </ol>
-          <button className="mx-auto max-w-48 bg-cta text-black font-semibold py-3 px-5 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 text-sm flex items-center justify-center gap-2">
-            <Wallet size={16} />
-            Connect Wallet
-          </button>
-        </div>
       </div>
     </div>
   );
