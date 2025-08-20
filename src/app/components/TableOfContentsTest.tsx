@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { List, Wallet } from "lucide-react";
-import puppy1 from "@/assets/puppy1.png";
-import puppy2 from "@/assets/puppy2.png";
 
 interface TOCItem {
   id: string;
