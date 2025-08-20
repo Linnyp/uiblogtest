@@ -68,9 +68,6 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${loveYaLikeASister.variable} ${inter.variable} antialiased min-h-screen`}
-        data-fonts-loaded="true"
-        data-love-ya-like-a-sister={loveYaLikeASister.variable}
-        data-inter={inter.variable}
       >
 
         <main>{children}</main>

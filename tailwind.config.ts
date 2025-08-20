@@ -8,14 +8,7 @@ const config: Config = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        'love-ya-like-a-sister': ['var(--font-love-ya-like-a-sister)', 'cursive'],
-        'inter': ['var(--font-inter)', 'sans-serif'],
-        'geist-sans': ['var(--font-geist-sans)', 'sans-serif'],
-        'geist-mono': ['var(--font-geist-mono)', 'monospace'],
-      },
-    },
+    extend: {},
   },
   plugins: [],
 }

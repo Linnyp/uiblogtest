@@ -26,14 +26,13 @@ export function BlogCard({
               className="group-hover:scale-110 transition-transform duration-300"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
+            <div className="absolute top-3 left-3 z-10">
+              <CategoryBadge category={post.category} />
+            </div>
           </div>
         )}
         <div className="p-6">
-          <div className="flex items-center gap-2 mb-3">
-            <CategoryBadge category={post.category} />
-          </div>
-
-          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-secondary transition-colors line-clamp-2">
+          <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-secondary transition-colors line-clamp-2">
             {post.title}
           </h3>
 
@@ -77,16 +76,13 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
         )}
 
         <div className="relative z-10 p-8 md:p-12">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="bg-cta text-yellow-900 px-3 py-1 rounded-full text-sm font-semibold">
-              Featured
-            </span>
-            <CategoryBadge category={post.category} variant="light" />
-          </div>
-
           <h2 className="text-3xl md:text-4xl font-bold mb-4 group-hover:text-white transition-colors">
             {post.title}
           </h2>
+
+          <div className="flex items-center gap-2 mb-4">
+            <CategoryBadge category={post.category} variant="light" />
+          </div>
 
           <p className="text-lg opacity-90 mb-6 line-clamp-3">
             {post.description}
@@ -223,9 +219,9 @@ export function SearchBar({
 }: SearchBarProps) {
   return (
     <div className="relative">
-      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
         <svg
-          className="w-5 h-5 text-gray-400"
+          className="w-5 h-5 text-gray-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -243,7 +239,7 @@ export function SearchBar({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        className="block w-full pl-12 pr-4 py-3 bg-white border-2 border-gray-200 rounded-xl shadow-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:shadow-xl transition-all duration-200 placeholder-gray-400 text-gray-900"
       />
     </div>
   );

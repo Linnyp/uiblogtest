@@ -64,34 +64,18 @@ export default function BlogListing({
 
   return (
     <div className="min-h-screen bg-primary">
-      {/* Hero Section */}
-      <div className="bg-secondary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center">
-            <h1
-              className="text-4xl md:text-6xl font-bold mb-4"
-              style={{ fontFamily: "var(--font-love-ya-like-a-sister)" }}
-            >
-              Discovering Ordinals
-            </h1>
-            <p className="text-xl md:text-2xl opacity-90 mb-8 max-w-3xl mx-auto">
-              All your Ordinals related content in one place! Explore guides,
-              analysis, tools, and the latest news.
-            </p>
-
-            {/* Search Bar */}
-            <div className="max-w-md mx-auto">
-              <SearchBar
-                value={searchQuery}
-                onChange={handleSearchChange}
-                placeholder="Search articles, guides, and more..."
-              />
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Search Bar */}
+        <div className="flex justify-center lg:justify-end mb-12">
+          <div className="w-96 max-w-full">
+            <SearchBar
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Search articles, guides, and more..."
+            />
           </div>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Featured Post */}
         {featuredPost && !searchQuery && selectedCategory === "All" && (
           <div className="mb-16">

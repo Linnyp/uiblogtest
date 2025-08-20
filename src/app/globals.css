@@ -13,8 +13,7 @@
   --color-secondary: #45556c;
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-love-ya-like-a-sister);
-  --font-body: var(--font-inter);
+  --font-love-ya-like-a-sister: var(--font-love-ya-like-a-sister), cursive;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -400,7 +399,7 @@ header h1 {
 }
 
 .article-content h2 {
-  margin-top: 3rem;
+  margin-top: 5rem;
   margin-bottom: 1.25rem;
   font-size: 2rem;
   font-weight: 600;

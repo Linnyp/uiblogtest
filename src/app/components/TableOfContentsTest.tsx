@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { List } from "lucide-react";
+import { List, Wallet } from "lucide-react";
 import puppy1 from "@/assets/puppy1.png";
 import puppy2 from "@/assets/puppy2.png";
 
@@ -200,14 +200,9 @@ export default function TableOfContentsTest({
 
   return (
     <div className="relative w-full max-w-sm">
-      {/* TEST VERSION INDICATOR */}
-      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold z-20">
-        TEST VERSION
-      </div>
-
       {/* Main TOC Content - MODIFY STYLES HERE */}
-      <div className="relative z-10 bg-gray-300 rounded-2xl py-4 text-black">
-        <h3 className="text-center text-lg font-semibold mb-5 decoration-white/50 flex items-center justify-center gap-2">
+      <div className="relative z-10 bg-gray-300 rounded-2xl py-8 text-black">
+        <h3 className="text-center text-md font-semibold mb-5 decoration-white/50 flex items-center justify-center gap-2">
           <List size={20} className="text-secondary" />
           Table of Contents
         </h3>
@@ -224,8 +219,8 @@ export default function TableOfContentsTest({
                   onClick={() => scrollToSection(item.id)}
                   className={`
                     w-full text-left block p-2 text-sm font-medium transition-all duration-200
-                    border-l-3 border-transparent hover:border-l-cta hover:bg-white/10 hover:pl-4
-                    ${activeId === item.id ? "border-l-cta bg-white/10" : ""}
+                    border-l-3 border-transparent hover:border-l-cta hover:bg-white/40 hover:pl-4
+                    ${activeId === item.id ? "border-l-cta bg-white/30" : ""}
                     ${
                       item.level === 2
                         ? "text-black/80 text-xs font-normal"
@@ -254,7 +249,7 @@ export default function TableOfContentsTest({
 
         {/* CTA Section - MODIFY STYLES HERE */}
         <div className="border-t border-white/20 pt-5 text-center">
-          <h4 className="text-lg font-semibold text-secondary mb-4">
+          <h4 className="text-md font-semibold text-black mb-4">
             Still Haven&apos;t Tried Ord-X?
           </h4>
           <ol className="list-decimal list-inside mb-5 space-y-2 text-sm">
@@ -262,7 +257,8 @@ export default function TableOfContentsTest({
             <li>Claim daily rewards</li>
             <li>Start inscribing your Bitcoin collectibles</li>
           </ol>
-          <button className="w-full max-w-48 bg-cta text-white font-semibold py-3 px-5 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 text-sm">
+          <button className="mx-auto max-w-48 bg-cta text-black font-semibold py-3 px-5 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 text-sm flex items-center justify-center gap-2">
+            <Wallet size={16} />
             Connect Wallet
           </button>
         </div>

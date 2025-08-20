@@ -349,9 +349,7 @@ export default function BlogPostComponent({
                   {/* Social Sharing - Mobile */}
                   {post.socialSharing && (
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-gray-500 mr-2">
-                        Share:
-                      </span>
+                      <span className="text-sm text-gray-500 mr-2">Share:</span>
                       <button
                         onClick={() => handleShare("twitter")}
                         className="p-2 text-gray-400 hover:text-blue-500 transition-colors"

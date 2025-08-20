@@ -29,6 +29,8 @@ export type BlogCategory =
   | 'Analysis' 
   | 'Getting Started'
   | 'Tutorial'
+  | 'Art'
+  | 'Opinion'
 
 
 export interface SearchResult extends BlogPostPreview {

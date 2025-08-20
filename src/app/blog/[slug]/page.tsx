@@ -25,9 +25,11 @@ export async function generateMetadata({
     const { slug } = await params;
     const post = await getBlogData(slug);
 
-    const ogImage =
-      post.heroImage ||
-      `${SITE_CONFIG.siteUrl}/api/og?title=${encodeURIComponent(post.title)}`;
+    if (!post.heroImage) {
+      throw new Error(`Hero image required for post: ${slug}`);
+    }
+
+    const ogImage = post.heroImage;
 
     return {
       title: `${post.title} | ${SITE_CONFIG.title}`,
@@ -55,6 +57,7 @@ export async function generateMetadata({
         title: post.title,
         description: post.description,
         images: [ogImage],
+        creator: `@${post.author.replace(/\s+/g, '')}`,
       },
       alternates: {
         canonical: `${SITE_CONFIG.siteUrl}/blog/${slug}`,
