@@ -3,6 +3,7 @@ import html from "remark-html";
 import remarkExternalLinks from "remark-external-links";
 import { visit } from "unist-util-visit";
 import type { Node } from "unist";
+import type { Plugin } from "unified";
 
 interface ImageNode extends Node {
   type: "image";
@@ -133,10 +134,7 @@ function generateWrapperClasses(options: Record<string, string>): string {
 // Enhanced content processing function
 export async function processArticleContent(content: string): Promise<string> {
   const processedContent = await remark()
-    .use(remarkExternalLinks as any, {
-      target: "_blank",
-      rel: ["noopener", "noreferrer"],
-    }) // External link processing
+    .use(remarkExternalLinks as Plugin) // External link processing
     .use(remarkImageEnhancer) // Custom image processing
     .use(html, { sanitize: false })
     .process(content);
