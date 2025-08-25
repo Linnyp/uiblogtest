@@ -22,21 +22,21 @@ export default function BlogPostComponent({
   const [readingProgress, setReadingProgress] = useState(0);
   const [imageModal, setImageModal] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Ensure page starts at top
-    window.scrollTo(0, 0);
+  // useEffect(() => {
+  //   // Ensure page starts at top
+  //   window.scrollTo(0, 0);
 
-    const updateReadingProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
-      setReadingProgress(Math.min(100, Math.max(0, progress)));
-    };
+  //   const updateReadingProgress = () => {
+  //     const scrollTop = window.scrollY;
+  //     const docHeight =
+  //       document.documentElement.scrollHeight - window.innerHeight;
+  //     const progress = (scrollTop / docHeight) * 100;
+  //     setReadingProgress(Math.min(100, Math.max(0, progress)));
+  //   };
 
-    window.addEventListener("scroll", updateReadingProgress);
-    return () => window.removeEventListener("scroll", updateReadingProgress);
-  }, []);
+  //   window.addEventListener("scroll", updateReadingProgress);
+  //   return () => window.removeEventListener("scroll", updateReadingProgress);
+  // }, []);
 
   // Add click handlers for image zoom
   useEffect(() => {
@@ -80,10 +80,10 @@ export default function BlogPostComponent({
   return (
     <>
       {/* Reading Progress Bar */}
-      <div
+      {/* <div
         className="fixed top-0 left-0 w-full h-1 bg-blue-600 z-50 transition-all duration-150"
         style={{ width: `${readingProgress}%` }}
-      />
+      /> */}
 
       <div className="min-h-screen bg-[#ebebeb]">
         {/* REDESIGNED Article Header */}
