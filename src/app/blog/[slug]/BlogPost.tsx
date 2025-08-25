@@ -104,13 +104,12 @@ export default function BlogPostComponent({
               {/* MOBILE: Image first (full width on mobile) */}
               {post.heroImage && (
                 <div className="lg:hidden mb-6">
-                  <div className="relative w-full rounded-lg overflow-hidden bg-gray-100">
+                  <div className="relative w-full h-0 pb-[33.33%] rounded-lg overflow-hidden bg-gray-100">
                     <Image
                       src={post.heroImage}
                       alt={post.title}
-                      width={800}
-                      height={267}
-                      className="w-full h-auto object-cover"
+                      fill
+                      className="object-fill absolute inset-0"
                       sizes="100vw"
                       priority
                     />
@@ -284,13 +283,12 @@ export default function BlogPostComponent({
               {/* RIGHT HALF: Hero Image (50% on desktop) - Desktop Only */}
               {post.heroImage && (
                 <div className="hidden lg:block lg:w-1/2 lg:flex-shrink-0">
-                  <div className="relative rounded-lg overflow-hidden bg-gray-100">
+                  <div className="relative h-full min-h-[400px] max-h-[16.67vw] rounded-lg overflow-hidden bg-gray-100">
                     <Image
                       src={post.heroImage}
                       alt={post.title}
-                      width={600}
-                      height={400}
-                      className="w-full h-auto object-cover min-h-[400px] max-h-[500px]"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       priority
                     />
@@ -441,9 +439,8 @@ export default function BlogPostComponent({
                         <Image
                           src={relatedPost.heroImage}
                           alt={relatedPost.title}
-                          width={400}
-                          height={128}
-                          className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
                           sizes="(max-width: 768px) 100vw, 33vw"
                         />
                       </div>
@@ -476,7 +473,7 @@ export default function BlogPostComponent({
                 alt="Zoomed image"
                 width={1200}
                 height={800}
-                className="w-auto h-auto max-w-full max-h-full object-contain rounded-lg"
+                className="max-w-full max-h-full object-contain rounded-lg"
                 sizes="100vw"
               />
               <button
