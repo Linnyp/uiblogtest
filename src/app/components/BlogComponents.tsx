@@ -61,9 +61,9 @@ interface FeaturedCardProps {
 export function FeaturedCard({ post }: FeaturedCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
-      <article className="relative bg-gradient-to-r from-[#64748b] to-white rounded-2xl overflow-hidden text-black">
+      <article className="relative bg-gradient-to-r from-[#64748b] to-white rounded-2xl overflow-hidden text-black before:absolute before:inset-0 before:bg-[#64748b] before:w-0 before:transition-all before:duration-[4000ms] before:ease-out before:z-20 hover:before:w-full">
         {post.heroImage && (
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 z-10">
             <Image
               src={post.heroImage}
               alt={post.title}
@@ -75,20 +75,20 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
           </div>
         )}
 
-        <div className="relative z-10 p-8 md:p-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 group-hover:text-white transition-colors">
+        <div className="relative z-30 p-8 md:p-12">
+          <div className="flex items-center gap-2 mb-2">
+            <CategoryBadge category={post.category} />
+          </div>
+
+          <h2 className="text-2xl lg:text-3xl font-bold mb-4  transition-colors duration-[4000ms]">
             {post.title}
           </h2>
 
-          <div className="flex items-center gap-2 mb-4">
-            <CategoryBadge category={post.category} variant="light" />
-          </div>
-
-          <p className="text-lg opacity-90 mb-6 line-clamp-3">
+          <p className="lg:text-lg opacity-90 mb-6 line-clamp-3 ">
             {post.description}
           </p>
 
-          <div className="flex items-center gap-6 text-sm opacity-80">
+          <div className="flex items-center gap-6 text-sm opacity-80 transition-all duration-[4000ms]">
             <span>By {post.author}</span>
             <span>{format(new Date(post.date), "MMM dd, yyyy")}</span>
           </div>
@@ -108,13 +108,11 @@ export function CategoryBadge({
   variant = "default",
 }: CategoryBadgeProps) {
   const variantClasses =
-    variant === "light"
-      ? "bg-white/20 text-black"
-      : "bg-secondary text-primary";
+    variant === "light" ? "bg-white/20 text-black" : "bg-primary text-black";
 
   return (
     <span
-      className={`px-2 py-1 rounded-full text-xs font-medium ${variantClasses}`}
+      className={`px-2 py-1 rounded-full text-xs font-bold tracking-wide ${variantClasses}`}
     >
       {category}
     </span>
@@ -262,10 +260,10 @@ export function CategoryFilter({
         <button
           key={category}
           onClick={() => onChange(category)}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 drop-shadow-md hover:drop-shadow-lg ${
+          className={`px-4 py-2 rounded-full text-sm transition-all duration-200 drop-shadow-md hover:drop-shadow-lg ${
             selected === category
-              ? "bg-cta text-white drop-shadow-lg"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              ? "bg-cta text-black font-bold drop-shadow-lg tracking-wide"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium"
           }`}
         >
           {category}

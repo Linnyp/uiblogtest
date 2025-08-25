@@ -65,36 +65,59 @@ export default function BlogListing({
   return (
     <div className="min-h-screen bg-primary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Search Bar */}
-        <div className="flex justify-center lg:justify-end mb-12">
-          <div className="w-96 max-w-full">
-            <SearchBar
-              value={searchQuery}
-              onChange={handleSearchChange}
-              placeholder="Search articles, guides, and more..."
-            />
-          </div>
-        </div>
-
         {/* Featured Post */}
         {featuredPost && !searchQuery && selectedCategory === "All" && (
           <div className="mb-16">
+            {/* Mobile: Search bar above and centered */}
+            <div className="flex justify-center mb-8 lg:hidden">
+              <div className="w-96 max-w-full">
+                <SearchBar
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  placeholder="Search articles, guides, and more..."
+                />
+              </div>
+            </div>
+
+            {/* Desktop: Header and search bar on same line */}
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+              <h2 className="font-love-ya-like-a-sister text-2xl lg:text-3xl text-secondary">
+                Featured
+              </h2>
+              <div className="w-96 max-w-full hidden lg:block">
+                <SearchBar
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  placeholder="Search articles, guides, and more..."
+                />
+              </div>
+            </div>
             <FeaturedCard post={featuredPost} />
+          </div>
+        )}
+
+        {/* Search Bar - Only show when no featured post */}
+        {(!featuredPost || searchQuery || selectedCategory !== "All") && (
+          <div className="flex justify-center mb-12">
+            <div className="w-96 max-w-full">
+              <SearchBar
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder="Search articles, guides, and more..."
+              />
+            </div>
           </div>
         )}
 
         {/* Category Filter */}
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="font-love-ya-like-a-sister text-2xl lg:text-3xl text-secondary">
               {searchQuery
                 ? `Search Results`
                 : selectedCategory === "All"
                 ? "Latest Articles"
                 : `${selectedCategory} Articles`}
-              <span className="text-lg font-normal text-gray-600 ml-2">
-                ({filteredPosts.length})
-              </span>
             </h2>
             <CategoryFilter
               categories={categories}
@@ -110,7 +133,7 @@ export default function BlogListing({
             <LoadingSpinner size="lg" />
           </div>
         ) : filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
               <BlogCard key={post.slug} post={post} showExcerpt={true} />
             ))}
