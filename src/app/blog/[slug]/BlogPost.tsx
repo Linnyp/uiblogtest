@@ -26,6 +26,9 @@ export default function BlogPostComponent({
     // Ensure page starts at top
     window.scrollTo(0, 0);
 
+    // Throttle function to limit how often the scroll handler runs
+    let timeoutId: NodeJS.Timeout | null = null;
+    
     const updateReadingProgress = () => {
       const scrollTop = window.scrollY;
       const docHeight =
@@ -34,8 +37,25 @@ export default function BlogPostComponent({
       setReadingProgress(Math.min(100, Math.max(0, progress)));
     };
 
-    window.addEventListener("scroll", updateReadingProgress);
-    return () => window.removeEventListener("scroll", updateReadingProgress);
+    // Throttled scroll handler - only updates every 16ms (~60fps)
+    const throttledScrollHandler = () => {
+      if (timeoutId) return;
+      
+      timeoutId = setTimeout(() => {
+        updateReadingProgress();
+        timeoutId = null;
+      }, 16);
+    };
+
+    // Use passive listener for better iOS performance
+    window.addEventListener("scroll", throttledScrollHandler, { passive: true });
+    
+    return () => {
+      window.removeEventListener("scroll", throttledScrollHandler);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, []);
 
   // Add click handlers for image zoom
