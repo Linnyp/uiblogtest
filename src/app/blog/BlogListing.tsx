@@ -79,11 +79,8 @@ export default function BlogListing({
               </div>
             </div>
 
-            {/* Desktop: Header and search bar on same line */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
-              <h2 className="font-love-ya-like-a-sister text-2xl lg:text-3xl text-secondary">
-                Featured
-              </h2>
+            {/* Desktop: Search bar only */}
+            <div className="flex justify-center lg:justify-end mb-6">
               <div className="w-96 max-w-full hidden lg:block">
                 <SearchBar
                   value={searchQuery}

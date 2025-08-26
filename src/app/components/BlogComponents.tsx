@@ -77,12 +77,15 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
 
         <div className="relative z-30 p-8 md:p-12">
           <div className="flex items-center gap-2 mb-2">
+            <h2 className="font-love-ya-like-a-sister text-2xl lg:text-3xl text-secondary">
+              Featured
+            </h2>
             <CategoryBadge category={post.category} />
           </div>
 
-          <h2 className="text-2xl lg:text-3xl font-bold mb-4  transition-colors duration-[4000ms]">
+          <h3 className="text-2xl lg:text-3xl font-bold mb-4  transition-colors duration-[4000ms]">
             {post.title}
-          </h2>
+          </h3>
 
           <p className="lg:text-lg opacity-90 mb-6 line-clamp-3 ">
             {post.description}
