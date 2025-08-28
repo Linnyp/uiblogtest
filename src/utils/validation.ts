@@ -75,6 +75,7 @@ export function sanitizeFrontmatter(
     title: frontmatter.title || filename.replace('.md', '').replace(/-/g, ' '),
     description: frontmatter.description || 'No description provided',
     author: frontmatter.author || 'Unknown Author',
+    authorAvatar: frontmatter.authorAvatar || undefined,
     date: frontmatter.date || new Date().toISOString().split('T')[0],
     category: isValidCategory(frontmatter.category || '') 
       ? frontmatter.category! 

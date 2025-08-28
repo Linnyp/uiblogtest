@@ -61,7 +61,7 @@ interface FeaturedCardProps {
 export function FeaturedCard({ post }: FeaturedCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
-      <article className="relative bg-gradient-to-r from-[#64748b] to-white rounded-2xl overflow-hidden text-black before:absolute before:inset-0 before:bg-[#64748b] before:w-0 before:transition-all before:duration-[4000ms] before:ease-out before:z-20 hover:before:w-full">
+      <article className="relative bg-gradient-to-r from-[#64748b] to-white rounded-2xl overflow-hidden text-black">
         {post.heroImage && (
           <div className="absolute inset-0 z-10">
             <Image
@@ -83,7 +83,7 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
             <CategoryBadge category={post.category} />
           </div>
 
-          <h3 className="text-2xl lg:text-3xl font-bold mb-4  transition-colors duration-[4000ms]">
+          <h3 className="text-2xl lg:text-3xl font-bold mb-4">
             {post.title}
           </h3>
 
@@ -91,7 +91,7 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
             {post.description}
           </p>
 
-          <div className="flex items-center gap-6 text-sm opacity-80 transition-all duration-[4000ms]">
+          <div className="flex items-center gap-6 text-sm opacity-80">
             <span>By {post.author}</span>
             <span>{format(new Date(post.date), "MMM dd, yyyy")}</span>
           </div>
@@ -103,7 +103,7 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
 
 interface CategoryBadgeProps {
   category: BlogCategory;
-  variant?: "default" | "light";
+  variant?: "default" | "light" | "dark";
 }
 
 export function CategoryBadge({
@@ -111,7 +111,11 @@ export function CategoryBadge({
   variant = "default",
 }: CategoryBadgeProps) {
   const variantClasses =
-    variant === "light" ? "bg-white/20 text-black" : "bg-primary text-black";
+    variant === "light" 
+      ? "bg-white/20 text-black" 
+      : variant === "dark"
+      ? "bg-secondary text-white"
+      : "bg-primary text-black";
 
   return (
     <span

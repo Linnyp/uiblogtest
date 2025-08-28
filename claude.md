@@ -4,6 +4,8 @@ Production-ready blog with GitHub content separation. App code in main repo, con
 
 # RULES
 
+-To get any missing context about recent changes made to the project using Claude always check .logged.md file first
+
 - Reference ui-styleguide.md in the root whenever making any styling decisions such as choosing colors, typography, font sizes, and anything else that would relate to manipulating the UI with CSS if not otherwise specified use the styles provided in the ui-styleguide.md file when making a change or creating something new.
 
 - After **any** change to the code make a log entry in the '.logged.md' file located in root summarizing the change and providing log details.
@@ -31,7 +33,15 @@ interface BlogPost {
   featured?: boolean;
 }
 
-type BlogCategory = "Guides" | "News" | "Tools" | "Analysis" | "Getting Started" | "Tutorial" | "Art" | "Opinion";
+type BlogCategory =
+  | "Guides"
+  | "News"
+  | "Tools"
+  | "Analysis"
+  | "Getting Started"
+  | "Tutorial"
+  | "Art"
+  | "Opinion";
 ```
 
 ## Key Components

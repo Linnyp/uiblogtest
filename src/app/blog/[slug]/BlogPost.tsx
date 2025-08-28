@@ -8,7 +8,6 @@ import { BlogPost, BlogPostPreview } from "@/types/blog";
 import { CategoryBadge } from "@/app/components/BlogComponents";
 import { calculateReadTime } from "@/utils/validation";
 import TableOfContents from "@/app/components/TableOfContentsTest";
-import MobileCTA from "@/app/components/MobileCTA";
 
 interface BlogPostProps {
   post: BlogPost;
@@ -104,7 +103,7 @@ export default function BlogPostComponent({
               {/* MOBILE: Image first (full width on mobile) */}
               {post.heroImage && (
                 <div className="lg:hidden mb-6">
-                  <div className="relative w-full h-0 pb-[33.33%] rounded-lg overflow-hidden bg-gray-100">
+                  <div className="relative w-full h-0 pb-[50%] md:pb-[33.33%] rounded-lg overflow-hidden bg-gray-100">
                     <Image
                       src={post.heroImage}
                       alt={post.title}
@@ -120,13 +119,13 @@ export default function BlogPostComponent({
               {/* LEFT HALF: All text content (50% on desktop) */}
               <div className="flex-1 lg:w-1/2">
                 {/* Title */}
-                <h1 className="text-4xl md:text-5xl text-gray-900 mb-4 leading-tight font-love-ya-like-a-sister">
+                <h1 className="text-center md:text-left text-3xl md:text-4xl text-gray-900 mb-4 leading-tight font-love-ya-like-a-sister">
                   {post.title}
                 </h1>
 
                 {/* Category Badge and Read Time */}
                 <div className="flex flex-wrap items-center gap-3 mb-6">
-                  <CategoryBadge category={post.category} />
+                  <CategoryBadge category={post.category} variant="dark" />
                   <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
                     {calculateReadTime(post.estimatedWordCount)}
                   </span>
@@ -141,19 +140,29 @@ export default function BlogPostComponent({
                 <div className="mb-6 hidden lg:block">
                   <div className="flex items-center justify-between lg:justify-start lg:gap-8 xl:justify-start xl:gap-8">
                     <div className="flex items-center text-gray-600">
-                      {/* Author Avatar Placeholder */}
-                      <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg
-                          className="w-4 h-4 text-gray-500"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clipRule="evenodd"
+                      {/* Author Avatar */}
+                      <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3 flex-shrink-0 overflow-hidden">
+                        {post.authorAvatar ? (
+                          <Image
+                            src={post.authorAvatar}
+                            alt={`${post.author} avatar`}
+                            width={32}
+                            height={32}
+                            className="w-full h-full object-cover"
                           />
-                        </svg>
+                        ) : (
+                          <svg
+                            className="w-4 h-4 text-gray-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        )}
                       </div>
                       <div className="flex flex-col sm:flex-row sm:items-center font-inter">
                         <span className="font-medium">{post.author}</span>
@@ -300,7 +309,7 @@ export default function BlogPostComponent({
         </header>
 
         {/* Article Content with Sidebar Layout */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 md:py-6">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Table of Contents Sidebar - Left Side - Desktop Only */}
             <aside className="hidden lg:block lg:w-60 lg:flex-shrink-0">
@@ -320,19 +329,29 @@ export default function BlogPostComponent({
               <div className="lg:hidden mt-12 border-t border-gray-200 pt-8">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-gray-600">
-                    {/* Author Avatar Placeholder */}
-                    <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                      <svg
-                        className="w-4 h-4 text-gray-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                          clipRule="evenodd"
+                    {/* Author Avatar */}
+                    <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3 flex-shrink-0 overflow-hidden">
+                      {post.authorAvatar ? (
+                        <Image
+                          src={post.authorAvatar}
+                          alt={`${post.author} avatar`}
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-cover"
                         />
-                      </svg>
+                      ) : (
+                        <svg
+                          className="w-4 h-4 text-gray-500"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      )}
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center font-inter">
                       <span className="font-medium">{post.author}</span>
@@ -402,11 +421,6 @@ export default function BlogPostComponent({
                 </div>
               </div>
 
-              {/* Mobile CTA - Only show on mobile */}
-              <div className="mt-16">
-                <MobileCTA />
-              </div>
-
               {/* Back to Blog - Mobile only */}
               <div className="lg:hidden mt-8 text-center">
                 <Link
@@ -446,7 +460,7 @@ export default function BlogPostComponent({
                       </div>
                     )}
                     <div className="p-4">
-                      <CategoryBadge category={relatedPost.category} />
+                      <CategoryBadge category={relatedPost.category} variant="dark" />
                       <h3 className="font-semibold text-gray-900 mt-2 mb-1 group-hover:text-blue-600 transition-colors line-clamp-2">
                         {relatedPost.title}
                       </h3>
