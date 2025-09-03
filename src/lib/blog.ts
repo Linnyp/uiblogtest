@@ -65,7 +65,6 @@ export async function getBlogData(slug: string): Promise<BlogPost> {
     // Validate and sanitize frontmatter
     const validation = validateFrontmatter(matterResult.data, `${slug}.md`)
     if (!validation.isValid) {
-      console.warn(`Validation errors in ${slug}.md:`, validation.errors)
     }
     if (validation.warnings.length > 0) {
       console.info(`Validation warnings in ${slug}.md:`, validation.warnings)
@@ -100,7 +99,6 @@ export async function getAllBlogPosts(): Promise<BlogPostPreview[]> {
           
           const validation = validateFrontmatter(matterResult.data, file.name)
           if (!validation.isValid) {
-            console.warn(`Validation errors in ${file.name}:`, validation.errors)
           }
           
           const sanitizedData = sanitizeFrontmatter(matterResult.data, file.name)
@@ -114,7 +112,6 @@ export async function getAllBlogPosts(): Promise<BlogPostPreview[]> {
             ...sanitizedData,
           }
         } catch (error) {
-          console.error(`Error processing file ${file.name}:`, error)
           return null
         }
       })

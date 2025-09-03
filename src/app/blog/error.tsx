@@ -11,7 +11,7 @@ export default function BlogError({
   reset: () => void
 }) {
   useEffect(() => {
-    console.error('Blog page error:', error)
+    // Error is already logged by React error boundary
   }, [error])
 
   return (

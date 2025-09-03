@@ -32,7 +32,7 @@ export default async function BlogPage() {
       />
     )
   } catch (error) {
-    console.error('Error loading blog data:', error)
+    // Error is handled by error boundary
     
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">

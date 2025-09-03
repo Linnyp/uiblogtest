@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import { BlogPost, BlogPostPreview } from "@/types/blog";
 import { CategoryBadge } from "@/app/components/BlogComponents";
 import { calculateReadTime } from "@/utils/validation";
-import TableOfContents from "@/app/components/TableOfContentsTest";
+import TableOfContents from "@/app/components/TableOfContents";
 
 interface BlogPostProps {
   post: BlogPost;
@@ -72,7 +72,7 @@ export default function BlogPostComponent({
       await navigator.clipboard.writeText(window.location.href);
       alert("Link copied to clipboard!");
     } catch (err) {
-      console.error("Failed to copy: ", err);
+      // Copy failed - user will see the fallback text
     }
   };
 
@@ -103,7 +103,7 @@ export default function BlogPostComponent({
               {/* MOBILE: Image first (full width on mobile) */}
               {post.heroImage && (
                 <div className="lg:hidden mb-6">
-                  <div className="relative w-full h-0 pb-[50%] md:pb-[33.33%] rounded-lg overflow-hidden bg-gray-100">
+                  <div className="relative w-full h-0 pb-[50%] sm:pb-[40%] rounded-lg overflow-hidden">
                     <Image
                       src={post.heroImage}
                       alt={post.title}
@@ -292,7 +292,7 @@ export default function BlogPostComponent({
               {/* RIGHT HALF: Hero Image (50% on desktop) - Desktop Only */}
               {post.heroImage && (
                 <div className="hidden lg:block lg:w-1/2 lg:flex-shrink-0">
-                  <div className="relative h-full min-h-[400px] max-h-[16.67vw] rounded-lg overflow-hidden bg-gray-100">
+                  <div className="relative h-full min-h-[400px] max-h-[16.67vw] rounded-lg overflow-hidden">
                     <Image
                       src={post.heroImage}
                       alt={post.title}
@@ -460,7 +460,10 @@ export default function BlogPostComponent({
                       </div>
                     )}
                     <div className="p-4">
-                      <CategoryBadge category={relatedPost.category} variant="dark" />
+                      <CategoryBadge
+                        category={relatedPost.category}
+                        variant="dark"
+                      />
                       <h3 className="font-semibold text-gray-900 mt-2 mb-1 group-hover:text-blue-600 transition-colors line-clamp-2">
                         {relatedPost.title}
                       </h3>

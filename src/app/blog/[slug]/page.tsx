@@ -13,7 +13,7 @@ export async function generateStaticParams() {
     const slugs = await getAllBlogSlugs();
     return slugs.map((slug) => ({ slug }));
   } catch (error) {
-    console.error("Error generating static params:", error);
+    // Error handled by Next.js, return empty array
     return [];
   }
 }
@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
     return <BlogPostComponent post={post} relatedPosts={relatedPosts} />;
   } catch (error) {
-    console.error("Error loading blog post:", error);
+    // Error handled by Next.js error boundary
     notFound();
   }
 }

@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import puppy1 from "@/assets/puppy1.png";
-import puppy2 from "@/assets/puppy2.png";
+import { List } from "lucide-react";
+import { generateHeadingId } from "@/utils/slugify";
 
 interface TOCItem {
   id: string;
@@ -15,7 +14,9 @@ interface TableOfContentsProps {
   contentHtml: string;
 }
 
-export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
+export default function TableOfContentsTest({
+  contentHtml,
+}: TableOfContentsProps) {
   const [tocItems, setTocItems] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
@@ -29,12 +30,7 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
       const level = parseInt(heading.tagName.charAt(1));
       const text = heading.textContent || "";
       // Create slug-like ID from text
-      const id =
-        text
-          .toLowerCase()
-          .replace(/[^\w\s-]/g, "") // Remove special characters
-          .replace(/\s+/g, "-") // Replace spaces with hyphens
-          .trim() || `heading-${index}`;
+      const id = generateHeadingId(text, index);
 
       return { id, text, level };
     });
@@ -49,20 +45,12 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
         ".article-content h1, .article-content h2"
       );
 
-      console.log("Found headings:", headings.length);
-
       headings.forEach((heading, index) => {
         const text = heading.textContent || "";
         // Generate the same ID as in tocItems
-        const id =
-          text
-            .toLowerCase()
-            .replace(/[^\w\s-]/g, "") // Remove special characters
-            .replace(/\s+/g, "-") // Replace spaces with hyphens
-            .trim() || `heading-${index}`;
+        const id = generateHeadingId(text, index);
 
         heading.id = id;
-        console.log(`Added ID "${id}" to heading: "${text}"`);
       });
 
       // Intersection Observer for active section highlighting
@@ -124,36 +112,26 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
   }, [tocItems]);
 
   const scrollToSection = (id: string) => {
-    console.log("Attempting to scroll to section with ID:", id);
-
     // First try to find by ID
     let element = document.getElementById(id);
 
     // If not found by ID, try to find by text content
     if (!element) {
-      console.log("Element not found by ID, searching by text content...");
       const headings = document.querySelectorAll(
         ".article-content h1, .article-content h2"
       );
       for (const heading of headings) {
         const text = heading.textContent || "";
-        const headingId = text
-          .toLowerCase()
-          .replace(/[^\w\s-]/g, "")
-          .replace(/\s+/g, "-")
-          .trim();
+        const headingId = generateHeadingId(text);
 
         if (headingId === id) {
           element = heading as HTMLElement;
-          console.log("Found element by text content:", text);
           break;
         }
       }
     }
 
     if (element) {
-      console.log("Scrolling to element:", element);
-
       // Get the element's position relative to the viewport
       const rect = element.getBoundingClientRect();
       const scrollTop =
@@ -171,23 +149,11 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
       // Ensure we don't scroll past the top of the page
       const finalScrollTop = Math.max(0, targetScrollTop);
 
-      console.log(
-        `Scrolling to position: ${finalScrollTop}px (nav height: ${navHeight}px)`
-      );
-
       // Smooth scroll to the calculated position
       window.scrollTo({
         top: finalScrollTop,
         behavior: "smooth",
       });
-    } else {
-      console.error("Could not find element with ID:", id);
-      console.log(
-        "Available headings:",
-        Array.from(
-          document.querySelectorAll(".article-content h1, .article-content h2")
-        ).map((h) => ({ text: h.textContent, id: h.id }))
-      );
     }
   };
 
@@ -197,42 +163,27 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
 
   return (
     <div className="relative w-full max-w-sm">
-      {/* Decorative Characters */}
-      <div className="absolute -top-18 left-2 z-0">
-        <div className="w-18 h-22 rounded-full transform -rotate-12 flex items-center justify-center text-2xl">
-          <Image src={puppy1} alt="Puppy 1" width={100} height={100} />
-        </div>
-      </div>
-      <div className="absolute -top-18 right-2 z-0">
-        <div className="w-18 h-22 rounded-full transform rotate-12 flex items-center justify-center text-2xl">
-          <Image src={puppy2} alt="Puppy 2" width={80} height={80} />
-        </div>
-      </div>
-
-      {/* Main TOC Content */}
-      <div className="relative z-10 bg-gray-300 rounded-2xl p-5 pt-12 text-black">
-        <h3 className="text-center text-lg font-semibold mb-5  decoration-white/50">
+      {/* Main TOC Content - MODIFY STYLES HERE */}
+      <div className="relative z-10 py-8">
+        <h3 className="text-center text-md font-semibold mb-5 decoration-white/50 flex items-center justify-center gap-2">
+          <List size={20} className="text-secondary" />
           Table of Contents
         </h3>
 
-        {/* Navigation Links */}
-        <nav className="mb-8">
+        {/* Navigation Links - MODIFY STYLES HERE */}
+        <nav>
           <ul className="list-none p-0 m-0">
             {tocItems.map((item) => (
               <li
                 key={item.id}
-                className={`mb-3 ${item.level === 2 ? "ml-5" : ""}`}
+                className={`mb-1 ${item.level === 2 ? "ml-5" : ""}`}
               >
                 <button
                   onClick={() => scrollToSection(item.id)}
                   className={`
                     w-full text-left block p-2 text-sm font-medium transition-all duration-200
-                    border-l-3 border-transparent pl-3 hover:border-l-orange-400 hover:bg-white/10 hover:pl-4
-                    ${
-                      activeId === item.id
-                        ? "border-l-orange-400 bg-white/10"
-                        : ""
-                    }
+                    border-l-3 border-transparent hover:border-l-cta hover:bg-white/40 hover:pl-4
+                    ${activeId === item.id ? "border-l-cta bg-white/30" : ""}
                     ${
                       item.level === 2
                         ? "text-black/80 text-xs font-normal"
@@ -259,20 +210,6 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
           </ul>
         </nav>
 
-        {/* CTA Section */}
-        <div className="border-t border-white/20 pt-5 text-center">
-          <h4 className="text-lg font-semibold text-secondary mb-4">
-            Still Haven&apos;t Tried Ord-X?
-          </h4>
-          <ol className="list-decimal list-inside mb-5 space-y-2 text-sm">
-            <li>Connect a wallet</li>
-            <li>Claim daily rewards</li>
-            <li>Start inscribing your Bitcoin collectibles</li>
-          </ol>
-          <button className="w-full max-w-48 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold py-3 px-5 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 text-sm">
-            Connect Wallet
-          </button>
-        </div>
       </div>
     </div>
   );

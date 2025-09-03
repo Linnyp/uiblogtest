@@ -9,7 +9,6 @@ export default async function Home() {
   try {
     recentPosts = await getRecentPosts(3);
   } catch (error) {
-    console.error('Error loading recent posts:', error);
   }
 
   return (
