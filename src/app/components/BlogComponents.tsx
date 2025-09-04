@@ -77,7 +77,7 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
 
         <div className="relative z-30 p-8 md:p-12">
           <div className="flex items-center justify-between mb-2">
-            <h2 className="font-love-ya-like-a-sister text-2xl lg:text-3xl text-secondary">
+            <h2 className="font-bungee text-2xl lg:text-3xl text-secondary">
               Featured
             </h2>
             <CategoryBadge category={post.category} />

@@ -119,7 +119,7 @@ export default function BlogPostComponent({
               {/* LEFT HALF: All text content (50% on desktop) */}
               <div className="flex-1 lg:w-1/2">
                 {/* Title */}
-                <h1 className="text-center md:text-left text-3xl md:text-4xl text-gray-900 mb-4 leading-tight font-love-ya-like-a-sister">
+                <h1 className="text-center md:text-left text-3xl md:text-4xl text-gray-900 mb-4 leading-tight font-bungee">
                   {post.title}
                 </h1>
 

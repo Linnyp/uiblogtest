@@ -109,7 +109,7 @@ export default function BlogListing({
         {/* Category Filter */}
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <h2 className="font-love-ya-like-a-sister text-2xl lg:text-3xl text-secondary">
+            <h2 className="font-bungee text-2xl lg:text-3xl text-secondary">
               {searchQuery
                 ? `Search Results`
                 : selectedCategory === "All"

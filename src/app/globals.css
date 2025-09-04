@@ -13,7 +13,7 @@
   --color-secondary: #45556c;
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-  --font-love-ya-like-a-sister: var(--font-love-ya-like-a-sister), cursive;
+  --font-bungee: var(--font-bungee), cursive;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,6 +53,10 @@ body {
   @apply rounded-lg shadow-md w-full;
 }
 
+.image-caption {
+  text-align: center;
+}
+
 /* Article content image containment */
 .article-content img {
   @apply max-w-full h-auto rounded-lg shadow-md mx-auto block;
@@ -71,7 +75,6 @@ body {
 .article-content figure img {
   @apply max-w-full h-auto;
 }
-
 
 /* Article Typography Enhancements */
 .article-content {
@@ -132,7 +135,7 @@ body {
 
 /* Header title styling */
 header h1 {
-  font-family: var(--font-love-ya-like-a-sister), cursive;
+  font-family: var(--font-bungee), cursive;
 }
 
 .article-content h1 {
@@ -141,7 +144,7 @@ header h1 {
   font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.2;
-  font-family: var(--font-love-ya-like-a-sister), cursive;
+  font-family: var(--font-bungee), cursive;
   color: #171717;
 }
 
@@ -152,7 +155,7 @@ header h1 {
   font-weight: 600;
   line-height: 1.3;
   text-align: center;
-  font-family: var(--font-love-ya-like-a-sister), cursive;
+  font-family: var(--font-bungee), cursive;
   color: #171717;
 }
 

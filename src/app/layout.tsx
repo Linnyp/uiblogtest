@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {
   Geist,
   Geist_Mono,
-  Love_Ya_Like_A_Sister,
+  Bungee,
   Inter,
 } from "next/font/google";
 import { SITE_CONFIG } from "@/lib/config";
@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const loveYaLikeASister = Love_Ya_Like_A_Sister({
-  variable: "--font-love-ya-like-a-sister",
+const bungee = Bungee({
+  variable: "--font-bungee",
   subsets: ["latin"],
   weight: "400", // This font only has one weight
 });
@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${loveYaLikeASister.variable} ${inter.variable} antialiased min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bungee.variable} ${inter.variable} antialiased min-h-screen`}
       >
 
         <main>{children}</main>
