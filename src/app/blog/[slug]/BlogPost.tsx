@@ -132,7 +132,7 @@ export default function BlogPostComponent({
                 </div>
 
                 {/* Description */}
-                <p className="text-xl text-gray-600 mb-6 leading-relaxed font-inter">
+                <p className="md:text-xl text-gray-600 mb-6 leading-relaxed font-inter">
                   {post.description}
                 </p>
 

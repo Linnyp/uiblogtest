@@ -80,7 +80,10 @@ export default function BlogListing({
             </div>
 
             {/* Desktop: Search bar only */}
-            <div className="flex justify-center lg:justify-end mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <h2 className="font-bungee text-2xl lg:text-3xl text-secondary">
+                Featured
+              </h2>
               <div className="w-96 max-w-full hidden lg:block">
                 <SearchBar
                   value={searchQuery}

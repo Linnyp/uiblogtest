@@ -75,17 +75,12 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
           </div>
         )}
 
-        <div className="relative z-30 p-8 md:p-12">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="font-bungee text-2xl lg:text-3xl text-secondary">
-              Featured
-            </h2>
+        <div className="relative z-30 p-10 lg:p-12">
+          <div className="flex items-center justify-end mb-2">
             <CategoryBadge category={post.category} />
           </div>
 
-          <h3 className="text-2xl lg:text-3xl font-bold mb-4">
-            {post.title}
-          </h3>
+          <h3 className="text-xl lg:text-2xl font-bold mb-4">{post.title}</h3>
 
           <p className="lg:text-lg opacity-90 mb-6 line-clamp-3 ">
             {post.description}
@@ -111,15 +106,15 @@ export function CategoryBadge({
   variant = "default",
 }: CategoryBadgeProps) {
   const variantClasses =
-    variant === "light" 
-      ? "bg-white/20 text-black" 
+    variant === "light"
+      ? "bg-white/20 text-black"
       : variant === "dark"
       ? "bg-secondary text-white"
       : "bg-primary text-black";
 
   return (
     <span
-      className={`px-2 py-1 rounded-full text-xs font-bold tracking-wide ${variantClasses}`}
+      className={`px-2 py-1 rounded-full text-xs tracking-wide ${variantClasses}`}
     >
       {category}
     </span>
